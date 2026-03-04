@@ -1,0 +1,679 @@
+/* ── Brand palette (Tailwind Blue) ─────────────────────────────── */
+:root {
+  --vp-c-brand-1: #2563eb;
+  --vp-c-brand-2: #3b82f6;
+  --vp-c-brand-3: #1d4ed8;
+  --vp-c-brand-soft: rgba(37, 99, 235, 0.1);
+}
+.dark {
+  --vp-c-brand-1: #60a5fa;
+  --vp-c-brand-2: #3b82f6;
+  --vp-c-brand-3: #2563eb;
+  --vp-c-brand-soft: rgba(96, 165, 250, 0.14);
+}
+
+/* ── Dark mode backgrounds (zinc-950 / zinc-900) ────────────────── */
+.dark {
+  /* zinc-950 — page canvas */
+  --vp-c-bg: #09090b;
+  --vp-c-bg-alt: #09090b;
+
+  /* zinc-900 — cards, sidebar, code blocks, nav */
+  --vp-c-bg-soft: #18181b;
+  --vp-c-bg-elv: #18181b;
+
+  /* zinc-800 / zinc-700 — borders & dividers */
+  --vp-c-divider: #27272a;
+  --vp-c-border: #3f3f46;
+  --vp-c-gutter: #09090b;
+}
+
+/* ── Hero: gradient title (blue → cyan) ─────────────────────────── */
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(
+    125deg,
+    #1e3a8a 0%,
+    #2563eb 35%,
+    #0284c7 65%,
+    #06b6d4 100%
+  );
+}
+.dark {
+  --vp-home-hero-name-background: linear-gradient(
+    125deg,
+    #bfdbfe 0%,
+    #60a5fa 40%,
+    #38bdf8 72%,
+    #67e8f9 100%
+  );
+}
+
+/* ── Home page: seamless gradient spanning hero + features ───────── */
+.VPHome {
+  background:
+    radial-gradient(
+      ellipse 110% 55% at 50% 0%,
+      rgba(37, 99, 235, 0.22) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 55% 40% at 4% 70%,
+      rgba(14, 165, 233, 0.12) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 55% 40% at 96% 65%,
+      rgba(99, 102, 241, 0.1) 0%,
+      transparent 65%
+    );
+}
+.dark .VPHome {
+  background:
+    radial-gradient(
+      ellipse 110% 55% at 50% 0%,
+      rgba(96, 165, 250, 0.16) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 55% 40% at 4% 70%,
+      rgba(56, 189, 248, 0.09) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 55% 40% at 96% 65%,
+      rgba(129, 140, 248, 0.08) 0%,
+      transparent 65%
+    );
+}
+
+/* remove individual section backgrounds so they don't cut the gradient */
+.VPHero,
+.VPFeatures,
+.VPHomeFeatures {
+  background: transparent !important;
+}
+
+/* ── Feature cards ──────────────────────────────────────────────── */
+.VPFeature {
+  border-radius: 12px;
+  border-color: rgba(37, 99, 235, 0.14);
+  background: linear-gradient(
+    160deg,
+    rgba(37, 99, 235, 0.03) 0%,
+    transparent 55%
+  );
+  box-shadow:
+    0 0 0 1px rgba(37, 99, 235, 0.06),
+    0 4px 16px rgba(37, 99, 235, 0.05);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.25s,
+    transform 0.2s,
+    background 0.2s;
+}
+.dark .VPFeature {
+  border-color: rgba(96, 165, 250, 0.13);
+  background: linear-gradient(
+    160deg,
+    rgba(96, 165, 250, 0.05) 0%,
+    transparent 55%
+  );
+  box-shadow:
+    0 0 0 1px rgba(96, 165, 250, 0.07),
+    0 4px 16px rgba(96, 165, 250, 0.07);
+}
+.VPFeature.link:hover {
+  border-color: rgba(37, 99, 235, 0.45);
+  background: linear-gradient(
+    160deg,
+    rgba(37, 99, 235, 0.07) 0%,
+    rgba(14, 165, 233, 0.03) 60%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(37, 99, 235, 0.15),
+    0 4px 16px rgba(37, 99, 235, 0.1),
+    0 16px 40px rgba(37, 99, 235, 0.08);
+  transform: translateY(-3px);
+}
+.dark .VPFeature.link:hover {
+  border-color: rgba(96, 165, 250, 0.4);
+  background: linear-gradient(
+    160deg,
+    rgba(96, 165, 250, 0.1) 0%,
+    rgba(56, 189, 248, 0.04) 60%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(96, 165, 250, 0.18),
+    0 4px 16px rgba(96, 165, 250, 0.12),
+    0 16px 40px rgba(96, 165, 250, 0.1);
+}
+
+/* ── Feature icon container ─────────────────────────────────────── */
+.VPFeature .icon {
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 235, 0.1) 0%,
+    rgba(14, 165, 233, 0.06) 100%
+  );
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  border-radius: 10px;
+}
+.dark .VPFeature .icon {
+  background: linear-gradient(
+    135deg,
+    rgba(96, 165, 250, 0.13) 0%,
+    rgba(125, 211, 252, 0.06) 100%
+  );
+  border: 1px solid rgba(96, 165, 250, 0.2);
+}
+
+/* ── Feature icon SVG color ─────────────────────────────────────── */
+.VPFeature .icon svg {
+  color: #2563eb;
+  stroke: #2563eb;
+}
+.dark .VPFeature .icon svg {
+  color: #60a5fa;
+  stroke: #60a5fa;
+}
+
+/* ── Feature link text ("Explore") ─────────────────────────────── */
+.VPFeature .link-text .link-text-value {
+  color: var(--vp-c-brand-1);
+  font-weight: 500;
+}
+
+/* ── Home-only visual polish ────────────────────────────────────── */
+
+/* "Developer Documentation": tighter tracking + ambient glow */
+.VPHome .VPHero .text {
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  text-shadow:
+    0 2px 20px rgba(37, 99, 235, 0.1),
+    0 0 80px rgba(14, 165, 233, 0.06);
+}
+.dark .VPHome .VPHero .text {
+  text-shadow:
+    0 0 60px rgba(37, 99, 235, 0.3),
+    0 0 140px rgba(14, 165, 233, 0.12);
+}
+
+/* Tagline: better max-width + line-height */
+.VPHome .VPHero .tagline {
+  max-width: 480px;
+  line-height: 1.65;
+  letter-spacing: 0.008em;
+}
+
+/* Feature titles: tighter tracking */
+.VPHome .VPFeature .title {
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+/* Feature descriptions: looser line-height, slightly subdued */
+.VPHome .VPFeature .details {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--vp-c-text-2);
+}
+
+/* ── Tech stack badges ──────────────────────────────────────────── */
+.home-tech-stack {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 40px 24px 64px;
+  text-align: center;
+}
+.home-tech-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-3);
+  margin-bottom: 16px;
+}
+.home-tech-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.tech-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 12.5px;
+  font-weight: 500;
+  border-radius: 9999px;
+  background: rgba(37, 99, 235, 0.07);
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  color: #2563eb;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+.tech-badge:hover {
+  background: rgba(37, 99, 235, 0.12);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+.dark .tech-badge {
+  background: rgba(96, 165, 250, 0.1);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  color: #93c5fd;
+}
+.dark .tech-badge:hover {
+  background: rgba(96, 165, 250, 0.16);
+  border-color: rgba(96, 165, 250, 0.35);
+}
+
+/* ── Nav: sticky frosted glass, no borders ───────────────────────── */
+:root {
+  --vp-nav-bg-color: rgba(255, 255, 255, 0.55);
+}
+.dark {
+  --vp-nav-bg-color: rgba(9, 9, 11, 0.55);
+}
+.VPNav {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30 !important;
+}
+/* Frosted glass on the full-width container */
+.VPNavBar {
+  background-color: var(--vp-nav-bg-color) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: none !important;
+  box-shadow: none !important;
+  transition:
+    background-color 0.2s ease,
+    backdrop-filter 0.2s ease !important;
+}
+/* Hide VitePress's built-in divider line element inside the navbar */
+.VPNavBar .divider,
+.VPNavBar .divider-line {
+  display: none !important;
+}
+/* At the top: fully transparent, no blur */
+.VPNavBar.top {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+/* Clear per-section backgrounds VitePress sets internally — backdrop on parent handles it */
+.VPNavBar .content-body,
+.VPNavBar .title {
+  background-color: transparent !important;
+}
+/* Remove border-bottom on logo/title area that overlaps sidebar on doc pages */
+.VPNavBarTitle {
+  --vp-c-divider: transparent;
+}
+
+/* Gradient border — visible only when scrolled (.top class removed by VitePress at scrollY > 0) */
+.VPNavBar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(37, 99, 235, 0.4) 20%,
+    rgba(14, 165, 233, 0.55) 50%,
+    rgba(37, 99, 235, 0.4) 80%,
+    transparent 100%
+  );
+}
+.dark .VPNavBar::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(96, 165, 250, 0.45) 20%,
+    rgba(56, 189, 248, 0.6) 50%,
+    rgba(96, 165, 250, 0.45) 80%,
+    transparent 100%
+  );
+}
+/* At the top: hide the border line */
+.VPNavBar.top::after {
+  opacity: 0;
+}
+
+/* Fix search position jump between home and doc pages.
+   On doc pages VitePress makes .title position:absolute (same width as sidebar).
+   On home page .title stays in flex flow — content-body starts at a different offset.
+   Giving .title the same width as the sidebar on home page aligns the search button. */
+@media (min-width: 960px) {
+  .VPNavBar:not(.has-sidebar) .title {
+    width: var(--vp-sidebar-width);
+    flex-shrink: 0;
+  }
+}
+
+/* Center nav menu, search on the right */
+@media (min-width: 960px) {
+  /* Center nav links (Guide, Features…) relative to the viewport using fixed positioning.
+     position:absolute with left:50% would be 50% of .content-body which starts after
+     the sidebar — so the menu drifts right. position:fixed makes left:50% = 50vw exactly. */
+  .VPNavBar .menu {
+    position: fixed;
+    left: 50%;
+    top: 0;
+    height: var(--vp-nav-height);
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    pointer-events: auto;
+    z-index: 1;
+  }
+  /* Search: remove flex-grow so it stays compact at the right edge */
+  .VPNavBar .search {
+    flex-grow: 0 !important;
+    padding-left: 16px !important;
+  }
+}
+
+/* ── Sidebar: no borders ─────────────────────────────────────────── */
+.dark .VPSidebar {
+  background: #09090b;
+  border-right: none;
+}
+/* Override CSS variable used in scoped VPSidebarGroup to remove group separators */
+.VPSidebar {
+  --vp-c-divider: transparent;
+}
+
+/* ── Local search modal: zinc-900 ───────────────────────────────── */
+.dark .VPLocalSearchBox {
+  background: #18181b;
+  border-color: #27272a;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--vp-c-divider);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-border);
+}
+
+/* ── Doc page: subtle top ambient glow ──────────────────────────── */
+.VPDoc {
+  background: radial-gradient(
+    ellipse 80% 40% at 50% -8%,
+    rgba(37, 99, 235, 0.05) 0%,
+    transparent 70%
+  );
+}
+.dark .VPDoc {
+  background: radial-gradient(
+    ellipse 80% 40% at 50% -8%,
+    rgba(96, 165, 250, 0.07) 0%,
+    transparent 70%
+  );
+}
+
+/* ── Doc headings: gradient accent left border ───────────────────── */
+.vp-doc h1 {
+  background: linear-gradient(125deg, #1e3a8a, #2563eb 50%, #0284c7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.dark .vp-doc h1 {
+  background: linear-gradient(125deg, #bfdbfe, #60a5fa 50%, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.vp-doc h2 {
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(
+      90deg,
+      rgba(37, 99, 235, 0.35) 0%,
+      rgba(14, 165, 233, 0.2) 40%,
+      transparent 80%
+    )
+    1;
+}
+.dark .vp-doc h2 {
+  border-image: linear-gradient(
+      90deg,
+      rgba(96, 165, 250, 0.4) 0%,
+      rgba(56, 189, 248, 0.2) 40%,
+      transparent 80%
+    )
+    1;
+}
+
+/* ── Tables: scrollable wrapper ─────────────────────────────────── */
+.vp-doc .vp-table-wrap {
+  overflow-x: auto; /* scroll when table is wider than content area */
+  overflow-y: clip; /* clip vertically for border-radius without creating a scroll container */
+  border-radius: 10px;
+  margin: 20px 0;
+}
+.dark .vp-doc .vp-table-wrap {
+  box-shadow:
+    0 0 0 1px #3f3f46,
+    0 4px 24px rgba(96, 165, 250, 0.07);
+}
+
+/* ── Tables: dark mode ──────────────────────────────────────────── */
+.dark .vp-doc table {
+  display: table !important; /* override VitePress display:block */
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  min-width: 100%; /* at least full width, wider when content needs it */
+  width: max-content; /* natural content width — allows wrapper to scroll */
+  margin: 0 !important; /* margin moved to wrapper */
+  border-radius: 0;
+}
+
+/* header */
+.dark .vp-doc table thead tr {
+  background: linear-gradient(
+    90deg,
+    rgba(96, 165, 250, 0.14) 0%,
+    rgba(56, 189, 248, 0.07) 60%,
+    rgba(96, 165, 250, 0.05) 100%
+  ) !important;
+}
+.dark .vp-doc table thead th {
+  color: #93c5fd !important;
+  font-weight: 600;
+  border-bottom: 1px solid #3f3f46;
+  border-right: 1px solid #3f3f46;
+}
+.dark .vp-doc table thead th:last-child {
+  border-right: none;
+}
+
+/* body */
+.dark .vp-doc table tbody tr {
+  transition: background 0.15s;
+}
+.dark .vp-doc table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.025);
+}
+.dark .vp-doc table tbody tr:hover {
+  background: rgba(96, 165, 250, 0.07) !important;
+}
+.dark .vp-doc table td {
+  color: #d4d4d8 !important;
+  border-bottom: 1px solid #27272a;
+  border-right: 1px solid #27272a;
+}
+.dark .vp-doc table td:last-child {
+  border-right: none;
+}
+.dark .vp-doc table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ── Code blocks: glow ──────────────────────────────────────────── */
+.vp-doc div[class*="language-"] {
+  box-shadow:
+    0 0 0 1px rgba(37, 99, 235, 0.12),
+    0 4px 24px rgba(37, 99, 235, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.15);
+}
+.dark .vp-doc div[class*="language-"] {
+  box-shadow:
+    0 0 0 1px rgba(96, 165, 250, 0.15),
+    0 4px 32px rgba(96, 165, 250, 0.1),
+    0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Hero action buttons: blue glass + glow ─────────────────────── */
+.VPHero .actions {
+  --vp-button-alt-border: rgba(37, 99, 235, 0.28);
+  --vp-button-alt-text: #2563eb;
+  --vp-button-alt-bg: rgba(37, 99, 235, 0.07);
+  --vp-button-alt-hover-border: rgba(37, 99, 235, 0.45);
+  --vp-button-alt-hover-text: #1d4ed8;
+  --vp-button-alt-hover-bg: rgba(37, 99, 235, 0.13);
+}
+.dark .VPHero .actions {
+  --vp-button-alt-border: rgba(96, 165, 250, 0.28);
+  --vp-button-alt-text: #93c5fd;
+  --vp-button-alt-bg: rgba(96, 165, 250, 0.1);
+  --vp-button-alt-hover-border: rgba(96, 165, 250, 0.45);
+  --vp-button-alt-hover-text: #bfdbfe;
+  --vp-button-alt-hover-bg: rgba(96, 165, 250, 0.18);
+}
+
+.VPHero .action .VPButton.alt {
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  box-shadow:
+    0 0 0 1px rgba(37, 99, 235, 0.1),
+    0 2px 12px rgba(37, 99, 235, 0.14),
+    0 8px 28px rgba(37, 99, 235, 0.07);
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s,
+    box-shadow 0.25s,
+    transform 0.2s;
+}
+.dark .VPHero .action .VPButton.alt {
+  backdrop-filter: blur(4px);
+  box-shadow:
+    0 0 0 1px rgba(96, 165, 250, 0.12),
+    0 2px 12px rgba(96, 165, 250, 0.18),
+    0 8px 28px rgba(96, 165, 250, 0.09);
+}
+
+.VPHero .action .VPButton.alt:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(37, 99, 235, 0.18),
+    0 4px 20px rgba(37, 99, 235, 0.22),
+    0 12px 40px rgba(37, 99, 235, 0.11);
+}
+.dark .VPHero .action .VPButton.alt:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(96, 165, 250, 0.2),
+    0 4px 20px rgba(96, 165, 250, 0.28),
+    0 12px 40px rgba(96, 165, 250, 0.14);
+}
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+.VPFooter {
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+/* ── Navbar height ──────────────────────────────────────────────── */
+:root {
+  --vp-nav-height: 72px;
+}
+
+/* ── Navbar logo SVG ────────────────────────────────────────────── */
+/* Hide the default VitePress logo — replaced by .nav-logo-wrap in Layout.vue */
+.VPNavBarTitle .logo {
+  display: none !important;
+}
+
+/* Custom logo wrapper with overlapping Developer badge */
+.nav-logo-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 2px;
+}
+.nav-logo-img {
+  display: block;
+  width: 150px;
+  height: auto;
+  animation: logo-glow 7s ease-in-out infinite;
+}
+@keyframes logo-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 3px rgba(220, 38, 38, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 6px rgba(220, 38, 38, 0.65))
+      drop-shadow(0 0 14px rgba(220, 38, 38, 0.25));
+  }
+}
+.dark .nav-logo-img {
+  animation: logo-glow-dark 7s ease-in-out infinite;
+}
+@keyframes logo-glow-dark {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 3px rgba(248, 113, 113, 0.45));
+  }
+  50% {
+    filter: drop-shadow(0 0 7px rgba(248, 113, 113, 0.7))
+      drop-shadow(0 0 16px rgba(220, 38, 38, 0.3));
+  }
+}
+
+/* ── "Developer" badge — overlaps bottom-right of logo ──────────── */
+.nav-dev-badge {
+  position: absolute;
+  bottom: -10px;
+  right: -8px;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  border-radius: 9999px;
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  color: #2563eb;
+  backdrop-filter: blur(4px);
+}
+.dark .nav-dev-badge {
+  background: rgba(96, 165, 250, 0.14);
+  border-color: rgba(96, 165, 250, 0.3);
+  color: #93c5fd;
+}
