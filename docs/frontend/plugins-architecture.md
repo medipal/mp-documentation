@@ -83,19 +83,128 @@ export default defineNuxtPlugin(() => {
 
 ### Store API
 
-| Method     | Signature                               | Description                                  |
-| ---------- | --------------------------------------- | -------------------------------------------- |
-| `register` | `(key: string, component: any) => void` | Registers a component into a named slot      |
-| `get`      | `(key: string) => any[]`                | Returns all components registered for a slot |
+| Method        | Signature                                    | Description                                               |
+| ------------- | -------------------------------------------- | --------------------------------------------------------- |
+| `register`    | `(key: string, component: any) => void`      | Registers a component into a named slot                   |
+| `get`         | `(key: string) => any[]`                     | Returns all components registered for a slot              |
+| `registerTab` | `(page: string, tab: TabDefinition) => void` | Registers a tab into a page's tab bar                     |
+| `getTabs`     | `(page: string) => TabDefinition[]`          | Returns all tabs registered for a page, sorted by `order` |
+
+### TabDefinition
+
+```ts
+type TabDefinition = {
+  label: string; // Tab label text
+  icon: string; // Iconify icon name
+  slot: string; // Slot key (slot-based) or identifier
+  path?: string; // Route name (route-based tabs only)
+  component?: any; // Vue component (slot-based tabs only)
+  order?: number; // Sort position (default: 50)
+  scope?: string; // Required scope — tab hidden if user lacks it
+  disabled?: boolean;
+  props?: Record<string, any>;
+};
+```
 
 ### Available Slots
 
-| Slot Name       | Location              | Wrapper Class                | Purpose                                                |
-| --------------- | --------------------- | ---------------------------- | ------------------------------------------------------ |
-| `login-actions` | `app/pages/login.vue` | `flex gap-4 justify-between` | Alternative sign-in methods below the credentials form |
+#### Component Slots
+
+Plugins inject into these using `slots.register("slot-name", Component)`.
+
+| Slot Name                      | Location                                    | Wrapper Class                | Purpose                                                       |
+| ------------------------------ | ------------------------------------------- | ---------------------------- | ------------------------------------------------------------- |
+| `navbar-actions`               | `app/components/NaviBar.vue`                | `flex gap-2`                 | Global search, notifications, quick actions                   |
+| `sidepanel-top`                | `app/components/Sidepanel/Sidepanel.vue`    | `flex flex-col gap-1`        | Custom navigation sections                                    |
+| `sidepanel-bottom`             | `app/components/Sidepanel/Sidepanel.vue`    | `flex flex-col gap-1`        | Status indicators, links                                      |
+| `login-header`                 | `app/pages/login.vue`                       | `flex flex-col gap-2 w-full` | Announcements, branding                                       |
+| `login-actions`                | `app/pages/login.vue`                       | `flex gap-4 justify-between` | SSO buttons, alternative sign-in methods                      |
+| `login-footer`                 | `app/pages/login.vue`                       | `flex flex-col gap-2 w-full` | Legal links, support info                                     |
+| `questionnaire-header-actions` | `app/pages/questionnaire/[id].vue`          | `flex gap-2`                 | Export, share, integrations (teleported to `#header-actions`) |
+| `patient-header-actions`       | `app/pages/patient/[id].vue`                | `flex gap-2`                 | Export, messaging (teleported to `#header-actions`)           |
+| `designer-toolbar-end`         | `app/pages/questionnaire/[id]/designer.vue` | `flex gap-2`                 | AI tools, preview modes, custom tools                         |
+
+#### Tab Registrations
+
+Plugins inject tabs using `slots.registerTab("page-key", tabDefinition)`. Two patterns exist:
+
+**Slot-based tabs** — the plugin provides a `component` that renders inside `PageContainer`:
+
+| Registry Key        | Page                                      | Scope Filtered | Notes                            |
+| ------------------- | ----------------------------------------- | -------------- | -------------------------------- |
+| `dashboard-tabs`    | Dashboard (`index/index.vue`)             | No             |                                  |
+| `user-profile-tabs` | User Profile (`user-profile.vue`)         | No             |                                  |
+| `admin-system-tabs` | Admin > System (`admin-panel/system.vue`) | Yes            | Tab hidden if user lacks `scope` |
+
+**Route-based tabs** — the plugin provides a `path` (route name) and must also ship a matching page file in its `pages/` directory:
+
+| Registry Key         | Page                                            | Scope Filtered | Notes                                                     |
+| -------------------- | ----------------------------------------------- | -------------- | --------------------------------------------------------- |
+| `admin-panel-tabs`   | Admin Panel (`admin-panel.vue`)                 | Yes            | Plugin must provide `pages/admin-panel/<name>.vue`        |
+| `questionnaire-tabs` | Questionnaire Detail (`questionnaire/[id].vue`) | No             | Plugin must provide `pages/questionnaire/[id]/<name>.vue` |
+| `patient-tabs`       | Patient Detail (`patient/[id].vue`)             | No             | Plugin must provide `pages/patient/[id]/<name>.vue`       |
+
+::: tip Slot-based vs Route-based Tabs
+Use **slot-based** when the tab content is a simple component without its own URL. Use **route-based** when the tab needs its own route (e.g. for deep linking or sub-navigation). Route-based tabs leverage Nuxt Layers — the plugin ships a page file and Nuxt auto-merges the route.
+:::
+
+### Examples
+
+#### Registering a Component Slot
+
+```ts
+// plugins/extend.ts
+slots.register(
+  "navbar-actions",
+  defineComponent({
+    setup() {
+      return () =>
+        h(UButton, {
+          icon: "lucide:bell",
+          variant: "ghost",
+          onClick: () => {
+            /* show notifications */
+          },
+        });
+    },
+  }),
+);
+```
+
+#### Registering a Slot-based Tab
+
+```ts
+slots.registerTab("dashboard-tabs", {
+  label: "Analytics",
+  icon: "lucide:bar-chart-3",
+  slot: "my-analytics",
+  component: defineComponent({
+    setup() {
+      return () => h("div", "Plugin analytics dashboard");
+    },
+  }),
+  order: 60,
+});
+```
+
+#### Registering a Route-based Tab
+
+```ts
+// plugins/extend.ts
+slots.registerTab("admin-panel-tabs", {
+  label: "My Feature",
+  icon: "lucide:blocks",
+  slot: "admin-panel-my-feature",
+  path: "admin-panel-my-feature",
+  scope: "my_feature:read", // optional — hidden if user lacks scope
+  order: 70,
+});
+
+// pages/admin-panel/my-feature.vue must also exist in the plugin
+```
 
 ::: tip Adding New Slots
-To expose a new injection point, add `<ExtendableSlot name="your-slot-name" />` in any template. Plugins can then register components into it.
+To expose a new injection point, add `<ExtendableSlot name="your-slot-name" />` in any template. Plugins can then register components into it. For new tab pages, add `extSlots.getTabs("key")` in the page's script and spread plugin tabs into the `tabs` computed.
 :::
 
 ## Creating a New Plugin

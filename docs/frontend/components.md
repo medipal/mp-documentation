@@ -176,4 +176,6 @@ Custom renderers override all default `@jsonforms/vue-vanilla` renderers. See `a
 
 ### `ExtendableSlot`
 
-Allows external code (plugins) to inject content into specific locations in the UI. Backed by `useExtendableSlotsStore`. Use `<ExtendableSlot name="slot-name" />` to define an injection point.
+Allows external code (plugins) to inject content into specific locations in the UI. Backed by `useExtendableSlotStore`. Use `<ExtendableSlot name="slot-name" />` to define an injection point.
+
+The store also supports **tab registration** via `registerTab()` / `getTabs()` for pages with tabbed interfaces. See [Plugin Architecture — Available Slots](./plugins-architecture.md#available-slots) for the full list of 9 component slots and 6 tab registration points.

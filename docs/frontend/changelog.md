@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.23.0] - 2026-03-03
+## [0.23.0] - 2026-03-04
 
 ### Added
 
@@ -46,6 +46,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Admin panel Access page now has four sub-tabs: Users, Sessions, Roles, API Keys
 - User scopes bootstrapped at login time from `/me` response via `scopeStore.setUserScopes()`
 - Full localization across all 11 locales (`@toasts.role.*`, `@toasts.scope.*`, `@toasts.apiKey.*`, `@pages.role.*`, `@modals.adminPanel.*`)
+
+#### Type Consolidation
+
+- Removed inline `Webhook`, `WebhookDelivery` interfaces from `stores/webhook.ts` — now imported from `@/types/webhook`
+- Removed inline `ApiKey` interface from `stores/apiKey.ts` — now imported from `@/types/apiKey`
+- Removed inline `EventDeliveryTask` interface from `stores/eventDeliveryTask.ts` — now imported from `@/types/eventDeliveryTask`
+- Removed local `Scope` interface from `components/ScopeMatrix.vue` — now imported from `@/types/scope`
+- Updated consumer imports in `webhooks.vue`, `CreateWebhookModal.vue`, `WebhookDeliveriesModal.vue`, `CreateApiKeyModal.vue` to import types from `@/types/` instead of stores
+- Added re-export shims: `app/types/webhook.ts`, `app/types/apiKey.ts`, `app/types/eventDeliveryTask.ts`, `app/types/scope.ts`
+
+#### ESLint Cleanup
+
+- Disabled `vue/multi-word-component-names` rule — incompatible with Nuxt file-based routing conventions
+- Fixed `vue/html-self-closing` violations across 15+ components (auto-fixed)
+- Fixed `vue/attributes-order` violations in `QuestionnaireEngineEditor.vue` and `nodes.vue` (auto-fixed)
+- Fixed `vue/require-default-prop` in `PanelActionSection.vue`, `PanelContent.vue`, `PanelHeader.vue` — added explicit `default: undefined`
+- Fixed `vue/no-side-effects-in-computed-properties` in `languages.vue` and `legal.vue` — extracted lazy initialization into `watchEffect`
+- Added `eslint-disable` for `vue/prop-name-casing` on `GridIcon.vue` snake_case props (intentional — API data spread via `v-bind`)
+- Removed unused `eslint-disable` directives in `patient.ts` and `vue-shim.d.ts`
+- Result: **0 ESLint warnings** (down from 106)
 
 ---
 
