@@ -1,16 +1,12 @@
 # Frontend Ecosystem
 
-::: info
-This section is under development.
-:::
-
 The Medipal frontend ecosystem spans multiple repositories that work together to deliver the web application experience.
 
 ## Repositories
 
 | Repository                                                                                                | Description                                           |
 | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| [mp-frontend](https://github.com/medipal/mp-frontend)                                                     | Main Nuxt 3 web application                           |
+| [mp-frontend](https://github.com/medipal/mp-frontend)                                                     | Main Nuxt 4 web application                           |
 | [mp-frontend-api](https://github.com/medipal/mp-frontend-api)                                             | Auto-generated TypeScript API client                  |
 | [mp-nuxt-api-layer](https://github.com/medipal/mp-nuxt-api-layer)                                         | Shared Nuxt API layer (extended by frontend & mobile) |
 | [mp-nuxt-msal-plugin](https://github.com/medipal/mp-nuxt-msal-plugin)                                     | Azure AD MSAL authentication plugin                   |
@@ -24,7 +20,7 @@ The Medipal frontend ecosystem spans multiple repositories that work together to
 
 ## Architecture
 
-The frontend is built with Nuxt 3, Vue 3, and TypeScript. It uses Pinia for state management, Tailwind CSS for styling, and auto-generated API clients for type-safe backend communication.
+The frontend is built with Nuxt 4, Vue 3, and TypeScript. It uses Pinia for state management, Tailwind CSS for styling, and auto-generated API clients for type-safe backend communication.
 
 ## Getting Started
 

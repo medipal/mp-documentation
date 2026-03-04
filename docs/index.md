@@ -27,7 +27,7 @@ features:
     link: /backend/
     icon: "\u2699\uFE0F"
   - title: Frontend
-    details: Nuxt 3 web application, components, state management, and deployment.
+    details: Nuxt 4 web application, components, state management, and deployment.
     link: /frontend/
     icon: "\U0001F5A5\uFE0F"
   - title: Mobile

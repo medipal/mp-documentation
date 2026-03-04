@@ -1,9 +1,5 @@
 # Repository Map
 
-::: info
-This section is under development.
-:::
-
 All Medipal source code is organised into focused repositories under the [`medipal`](https://github.com/medipal) GitHub organisation.
 
 ## Core
@@ -18,22 +14,30 @@ All Medipal source code is organised into focused repositories under the [`medip
 
 | Repository                                                                    | Description                                | Tech                      |
 | ----------------------------------------------------------------------------- | ------------------------------------------ | ------------------------- |
-| [mp-frontend](https://github.com/medipal/mp-frontend)                         | Web application                            | Nuxt 3, Vue 3, TypeScript |
+| [mp-frontend](https://github.com/medipal/mp-frontend)                         | Web application                            | Nuxt 4, Vue 3, TypeScript |
 | [mp-frontend-api](https://github.com/medipal/mp-frontend-api)                 | Generated TypeScript API client (frontend) | TypeScript                |
-| [mp-nuxt-api-layer](https://github.com/medipal/mp-nuxt-api-layer)             | Shared Nuxt API layer                      | Nuxt 3                    |
-| [mp-nuxt-msal-plugin](https://github.com/medipal/mp-nuxt-msal-plugin)         | Azure AD MSAL authentication plugin        | Nuxt 3                    |
+| [mp-nuxt-api-layer](https://github.com/medipal/mp-nuxt-api-layer)             | Shared Nuxt API layer                      | Nuxt, TypeScript          |
+| [mp-nuxt-msal-plugin](https://github.com/medipal/mp-nuxt-msal-plugin)         | Azure AD MSAL authentication plugin        | Nuxt, TypeScript          |
 | [mp-frontend-nginx-proxy](https://github.com/medipal/mp-frontend-nginx-proxy) | Nginx reverse proxy                        | Nginx                     |
 
 ## Mobile
 
 | Repository                                                                              | Description                              | Tech                      |
 | --------------------------------------------------------------------------------------- | ---------------------------------------- | ------------------------- |
-| [mp-mobile-app](https://github.com/medipal/mp-mobile-app)                               | Mobile application                       | Nuxt 3, Capacitor 7       |
+| [mp-mobile-app](https://github.com/medipal/mp-mobile-app)                               | Mobile application                       | Nuxt 4, Capacitor 7       |
 | [mp-mobile-app-api](https://github.com/medipal/mp-mobile-app-api)                       | Generated TypeScript API client (mobile) | TypeScript                |
 | [mp-mobile-app-live-update](https://github.com/medipal/mp-mobile-app-live-update)       | OTA live-update Capacitor plugin         | TypeScript, Swift, Kotlin |
 | [mp-mobile-app-builder](https://github.com/medipal/mp-mobile-app-builder)               | Mobile app builder                       | Node.js                   |
 | [mp-mobile-app-ios-native](https://github.com/medipal/mp-mobile-app-ios-native)         | Native iOS project                       | Swift                     |
 | [mp-mobile-app-android-native](https://github.com/medipal/mp-mobile-app-android-native) | Native Android project                   | Kotlin                    |
+| [mp-mobile-app-tracker-api](https://github.com/medipal/mp-mobile-app-tracker-api)       | Generated TypeScript tracker client      | TypeScript                |
+
+## Tracker
+
+| Repository                                                            | Description              | Tech            |
+| --------------------------------------------------------------------- | ------------------------ | --------------- |
+| [mp-tracker](https://github.com/medipal/mp-tracker)                   | Analytics service        | Python, FastAPI |
+| [mp-tracker-api-spec](https://github.com/medipal/mp-tracker-api-spec) | OpenAPI spec for tracker | YAML            |
 
 ## Schema & Generation
 
@@ -42,6 +46,7 @@ All Medipal source code is organised into focused repositories under the [`medip
 | [mp-typescript-api-generator](https://github.com/medipal/mp-typescript-api-generator)                     | TypeScript API generator | TypeScript |
 | [mp-typescript-api-generator-templates](https://github.com/medipal/mp-typescript-api-generator-templates) | API generator templates  | ETA        |
 | [mp-typescript-api-validation](https://github.com/medipal/mp-typescript-api-validation)                   | API validation (AJV)     | TypeScript |
+| [mp-tracker-api-spec](https://github.com/medipal/mp-tracker-api-spec)                                     | OpenAPI spec for tracker | YAML       |
 
 ## Questionnaires
 
@@ -61,10 +66,11 @@ All Medipal source code is organised into focused repositories under the [`medip
 
 ## Infrastructure
 
-| Repository                                                              | Description              | Tech |
-| ----------------------------------------------------------------------- | ------------------------ | ---- |
-| [mp-github-actions](https://github.com/medipal/mp-github-actions)       | Shared GitHub Actions    | YAML |
-| [mp-tf-infrastructure](https://github.com/medipal/mp-tf-infrastructure) | Terraform infrastructure | HCL  |
+| Repository                                                                      | Description                   | Tech |
+| ------------------------------------------------------------------------------- | ----------------------------- | ---- |
+| [mp-github-actions](https://github.com/medipal/mp-github-actions)               | Shared GitHub Actions         | YAML |
+| [mp-tf-infrastructure](https://github.com/medipal/mp-tf-infrastructure)         | Terraform infrastructure      | HCL  |
+| [mp-fastlane-certificates](https://github.com/medipal/mp-fastlane-certificates) | iOS code signing certificates | —    |
 
 ## Testing
 
@@ -88,3 +94,5 @@ All Medipal source code is organised into focused repositories under the [`medip
 ## Dependency Graph
 
 The [mp-schema](https://github.com/medipal/mp-schema) repository sits at the root of the dependency graph. CI pipelines generate typed clients that are consumed by the server, frontend, and mobile app.
+
+See [Platform Architecture](/overview/platform) for the full dependency diagram.

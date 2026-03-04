@@ -1,15 +1,26 @@
 # Native Submodules
 
-::: info
-This section is under development.
-:::
-
-The native iOS and Android projects are maintained in separate repositories and included as submodules in the mobile app build process.
+The native iOS and Android projects are maintained in separate repositories and included as git submodules in both `mp-mobile-app` and `mp-mobile-app-builder`.
 
 ## Repositories
 
-- `mp-mobile-app-ios` — Xcode project with native iOS configuration
-- `mp-mobile-app-android` — Android Studio project with native Android configuration
+- `mp-mobile-app-ios-native` — Xcode project with native iOS configuration (Swift)
+- `mp-mobile-app-android-native` — Android Studio project with native Android configuration (Kotlin)
+
+## Submodule Mounts
+
+Both repositories are mounted as submodules in two consumers:
+
+| Consumer                | Mount path         | Purpose                                    |
+| ----------------------- | ------------------ | ------------------------------------------ |
+| `mp-mobile-app`         | `ios/`, `android/` | Local development and debugging            |
+| `mp-mobile-app-builder` | `ios/`, `android/` | App store distribution builds via Fastlane |
+
+After cloning either consumer, initialise submodules with:
+
+```bash
+git submodule update --init --recursive
+```
 
 ## Native Configuration
 
