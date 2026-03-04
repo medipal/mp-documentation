@@ -3,18 +3,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "Medipal Documentation",
   description: "Developer documentation for the Medipal platform",
-  base: "/mp-documentation/",
-
-  head: [
-    [
-      "link",
-      {
-        rel: "icon",
-        type: "image/png",
-        href: "/mp-documentation/logo-icon.png",
-      },
-    ],
-  ],
+  head: [["link", { rel: "icon", type: "image/png", href: "/logo-icon.png" }]],
 
   themeConfig: {
     logo: {
@@ -48,7 +37,7 @@ export default defineConfig({
 
     footer: {
       message:
-        'Medipal Documentation &nbsp;|&nbsp; <a href="https://medipal.github.io/mp-documentation/" target="_blank">https://medipal.github.io/mp-documentation/</a>',
+        'Medipal Documentation &nbsp;|&nbsp; <a href="https://docs.medipal.dev" target="_blank">https://docs.medipal.dev</a>',
     },
   },
 
