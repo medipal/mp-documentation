@@ -649,8 +649,8 @@
 .VPNavBarTitle::after {
   content: "Developer";
   position: absolute;
-  bottom: 2px;
-  right: -8px;
+  bottom: 8px;
+  right: 38px;
   display: inline-flex;
   align-items: center;
   padding: 2px 6px;
