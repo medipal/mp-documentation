@@ -69,11 +69,11 @@ Nuxt auto-imports:
 - All utilities from `app/utils/`
 - All Vue/Nuxt/Pinia APIs
 
-No explicit `import` statements needed for these in `.vue` files or stores.
+No explicit `import` statements needed for these in `.vue` files or stores. See [Code Quality — Auto-Imports](./code-quality#auto-imports) for details on when explicit imports are needed.
 
 ### Props Destructuring
 
-`vue.propsDestructure: false` in `nuxt.config.ts`. Always access props as `props.xxx`, not destructured.
+`vue.propsDestructure: false` in `nuxt.config.ts`. Always access props as `props.xxx`, not destructured. See [Coding Standards — Props](./coding-standards#props) for examples.
 
 ### ESLint Overrides
 
@@ -84,9 +84,11 @@ vue/no-mutating-props                        OFF  (used intentionally in some co
 vue/no-side-effects-in-computed-properties   WARN
 ```
 
+See [Code Quality](./code-quality) for the full ESLint configuration, Prettier setup, and code review checklist.
+
 ### Tailwind CSS
 
-Class-based utility styling. Custom component variants defined in `app.config.ts` via `defineAppConfig`. Theme: `primary: "blue"`, `neutral: "zinc"`.
+Class-based utility styling. Custom component variants defined in `app.config.ts` via `defineAppConfig`. Theme: `primary: "blue"`, `neutral: "zinc"`. See [Code Quality — CSS Rules](./code-quality#css-rules) for Tailwind v4 conventions.
 
 ## Build Configuration
 
@@ -103,7 +105,7 @@ Heavy dependencies are split into named chunks to improve initial load performan
 
 ### Console Stripping
 
-`console.*` and `debugger` statements are dropped by esbuild in all non-development builds.
+`console.*` and `debugger` statements are dropped by esbuild in all non-development builds. See [Code Quality — Console & Debugger](./code-quality#console-debugger) for guidelines.
 
 ### Experimental Features
 
@@ -136,7 +138,7 @@ export type Questionnaire = Awaited<
 >["data"];
 ```
 
-This ensures types stay in sync automatically when `@medipal/mp-frontend-api` is updated.
+This ensures types stay in sync automatically when `@medipal/mp-frontend-api` is updated. See [TypeScript Conventions](./typescript-conventions) for comprehensive typing guidelines.
 
 ### Event Bus for Decoupling
 

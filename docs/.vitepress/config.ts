@@ -138,6 +138,18 @@ export default defineConfig({
           ],
         },
         {
+          text: "Standards",
+          items: [
+            { text: "Code Quality", link: "/frontend/code-quality" },
+            {
+              text: "TypeScript Conventions",
+              link: "/frontend/typescript-conventions",
+            },
+            { text: "Coding Standards", link: "/frontend/coding-standards" },
+            { text: "Testing", link: "/frontend/testing" },
+          ],
+        },
+        {
           text: "Architecture",
           items: [
             {
