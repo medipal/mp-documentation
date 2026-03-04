@@ -94,6 +94,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Docs deployment enabled from both `main` and `development` branches
 - VitePress sidebar updated with navigation links for Workflow, Plugin, Vault, and Role Management docs
 
+### Removed
+
+- VitePress documentation — moved to dedicated `mp-documentation` repository. Removed `docs/` directory, `docs:dev`/`docs:build`/`docs:preview` scripts, `vitepress` devDependency, `deploy-docs.yml` workflow, and all README references
+
 ---
 
 ## [0.22.0] - 2026-02-28
