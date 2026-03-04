@@ -612,20 +612,8 @@
 }
 
 /* ── Navbar logo SVG ────────────────────────────────────────────── */
-/* Hide the default VitePress logo — replaced by .nav-logo-wrap in Layout.vue */
+/* Use the native VitePress logo (CSS light/dark swap — no hydration flash) */
 .VPNavBarTitle .logo {
-  display: none !important;
-}
-
-/* Custom logo wrapper with overlapping Developer badge */
-.nav-logo-wrap {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  margin-right: 2px;
-}
-.nav-logo-img {
-  display: block;
   width: 150px;
   height: auto;
   animation: logo-glow 7s ease-in-out infinite;
@@ -640,7 +628,7 @@
       drop-shadow(0 0 14px rgba(220, 38, 38, 0.25));
   }
 }
-.dark .nav-logo-img {
+.dark .VPNavBarTitle .logo {
   animation: logo-glow-dark 7s ease-in-out infinite;
 }
 @keyframes logo-glow-dark {
@@ -655,9 +643,13 @@
 }
 
 /* ── "Developer" badge — overlaps bottom-right of logo ──────────── */
-.nav-dev-badge {
+.VPNavBarTitle {
+  position: relative;
+}
+.VPNavBarTitle::after {
+  content: "Developer";
   position: absolute;
-  bottom: -10px;
+  bottom: 2px;
   right: -8px;
   display: inline-flex;
   align-items: center;
@@ -672,7 +664,7 @@
   color: #2563eb;
   backdrop-filter: blur(4px);
 }
-.dark .nav-dev-badge {
+.dark .VPNavBarTitle::after {
   background: rgba(96, 165, 250, 0.14);
   border-color: rgba(96, 165, 250, 0.3);
   color: #93c5fd;
