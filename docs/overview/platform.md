@@ -72,6 +72,8 @@ mp-mobile-app-builder               (native distribution builds)
     ├─ android/ (submodule) → mp-mobile-app-android-native
     └─ mp-fastlane-certificates     (iOS code signing)
 
+mp-live-update-manager              (bundle build + S3 deploy + CDN invalidation)
+
 ═══════════════════════════════════════════════════════════════════════════
  5. QUESTIONNAIRE PIPELINE
 ═══════════════════════════════════════════════════════════════════════════
@@ -107,6 +109,7 @@ mp-github-actions           (shared workflows & composite actions)
 mp-tf-infrastructure        (Terraform — AWS VPC, EC2, RDS, S3, CloudFront)
 mp-frontend-nginx-proxy     (Nginx reverse proxy — SSL, gzip, routing)
 mp-fastlane-certificates    (encrypted iOS signing profiles)
+mp-live-update-manager      (live update bundle manager — build, deploy, promote)
 
 ═══════════════════════════════════════════════════════════════════════════
  9. TESTING
@@ -277,6 +280,20 @@ How it works:
 API: `getLocalContent()`, `checkForContentUpdate()`, `pullContentUpdate()`, `setWebViewPath()`
 
 > iOS and Android builds are fully supported. The OTA live update feature is currently iOS-only; Android live update support is planned.
+
+---
+
+### mp-live-update-manager
+
+**Role:** Full-stack Nuxt 4 application for managing OTA live update bundles.
+
+- Build orchestration: queue builds from any `mp-mobile-app` branch/tag, run `nuxt generate`, package and upload to S3
+- Environment promotion: deploy bundles to development, staging, or production with CloudFront cache invalidation
+- Audit trail: every action (build, deploy, delete) logged in JSONL format on S3
+- JWT authentication with API key anti-DDoS layer
+- Serial build queue with real-time log streaming
+
+See [Live Update Manager](/mobile/live-update-manager) for the full documentation.
 
 ---
 
@@ -460,3 +477,4 @@ Centralized CI/CD orchestration for the entire platform:
 5. **Auth has two paths:** credentials (mp-nuxt-api-layer interceptors) + Azure AD (mp-nuxt-msal-plugin)
 6. **mp-schema is the root of the dependency graph** — all typed clients, models, and route definitions flow from it
 7. **Server plugins use `mp-server-plugin-sdk`** — never add plugin logic directly to mp-server
+8. **`mp-live-update-manager` manages OTA bundles** — builds from `mp-mobile-app` repo, stores on S3, promotes across environments

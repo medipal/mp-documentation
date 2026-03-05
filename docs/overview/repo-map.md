@@ -66,11 +66,12 @@ All Medipal source code is organised into focused repositories under the [`medip
 
 ## Infrastructure
 
-| Repository                                                                      | Description                   | Tech |
-| ------------------------------------------------------------------------------- | ----------------------------- | ---- |
-| [mp-github-actions](https://github.com/medipal/mp-github-actions)               | Shared GitHub Actions         | YAML |
-| [mp-tf-infrastructure](https://github.com/medipal/mp-tf-infrastructure)         | Terraform infrastructure      | HCL  |
-| [mp-fastlane-certificates](https://github.com/medipal/mp-fastlane-certificates) | iOS code signing certificates | —    |
+| Repository                                                                      | Description                   | Tech           |
+| ------------------------------------------------------------------------------- | ----------------------------- | -------------- |
+| [mp-github-actions](https://github.com/medipal/mp-github-actions)               | Shared GitHub Actions         | YAML           |
+| [mp-tf-infrastructure](https://github.com/medipal/mp-tf-infrastructure)         | Terraform infrastructure      | HCL            |
+| [mp-fastlane-certificates](https://github.com/medipal/mp-fastlane-certificates) | iOS code signing certificates | —              |
+| [mp-live-update-manager](https://github.com/medipal/mp-live-update-manager)     | Live update bundle manager    | Nuxt 4, AWS S3 |
 
 ## Testing
 

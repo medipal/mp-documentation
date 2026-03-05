@@ -309,6 +309,10 @@ export default defineConfig({
             { text: "Deployment", link: "/mobile/deployment" },
             { text: "Live Update", link: "/mobile/live-update" },
             {
+              text: "Live Update Manager",
+              link: "/mobile/live-update-manager",
+            },
+            {
               text: "Native Submodules",
               link: "/mobile/native-submodules",
             },
