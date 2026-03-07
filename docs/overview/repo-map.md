@@ -31,6 +31,7 @@ All Medipal source code is organised into focused repositories under the [`medip
 | [mp-mobile-app-ios-native](https://github.com/medipal/mp-mobile-app-ios-native)         | Native iOS project                       | Swift                     |
 | [mp-mobile-app-android-native](https://github.com/medipal/mp-mobile-app-android-native) | Native Android project                   | Kotlin                    |
 | [mp-mobile-app-tracker-api](https://github.com/medipal/mp-mobile-app-tracker-api)       | Generated TypeScript tracker client      | TypeScript                |
+| [mp-nuxt-sqlite-layer](https://github.com/medipal/mp-nuxt-sqlite-layer)                 | Shared Nuxt SQLite + Kysely layer        | Nuxt, TypeScript          |
 
 ## Tracker
 

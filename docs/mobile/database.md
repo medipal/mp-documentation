@@ -2,13 +2,35 @@
 
 ## Stack
 
-| Layer   | Technology                    | Notes                                                         |
-| ------- | ----------------------------- | ------------------------------------------------------------- |
-| Driver  | `@capacitor-community/sqlite` | Native SQLite on iOS/Android; `jeep-sqlite` (WASM) in browser |
-| ORM     | Kysely 0.27.6                 | Type-safe SQL query builder                                   |
-| Adapter | `capacitor-sqlite-kysely`     | Kysely dialect for Capacitor SQLite                           |
+| Layer          | Technology                    | Notes                                                         |
+| -------------- | ----------------------------- | ------------------------------------------------------------- |
+| Driver         | `@capacitor-community/sqlite` | Native SQLite on iOS/Android; `jeep-sqlite` (WASM) in browser |
+| ORM            | Kysely 0.27.6                 | Type-safe SQL query builder                                   |
+| Adapter        | `capacitor-sqlite-kysely`     | Kysely dialect for Capacitor SQLite                           |
+| Infrastructure | `mp-nuxt-sqlite-layer`        | Shared Nuxt layer — connection, migrations, CRUD helpers      |
 
-Connection name: `"nuxt"`. The `<jeep-sqlite>` element is injected into `document.body` by `app/plugins/sqlite.ts` before the database is opened.
+Connection name: `"nuxt"` (configured in `app/database/config.ts`). The `<jeep-sqlite>` element is injected into `document.body` by `app/plugins/sqlite.ts` before the database is opened.
+
+### Initialization
+
+Database setup is split between the shared layer and the app:
+
+1. **`app/database/config.ts`** — defines database name and `getMigrations()` callback via `defineSqliteConfig()`
+2. **`app/database/index.ts`** — exports the `Database` type interface and the `getMigrations()` function using `import.meta.glob`
+3. **`app/plugins/initializeApp.ts`** — calls `initDatabase(config)` then `runMigrations(db, config.getMigrations)` at startup
+
+```ts
+// app/database/config.ts
+import { defineSqliteConfig } from "@medipal/mp-nuxt-sqlite-layer/types";
+import { getMigrations } from "./index";
+
+export default defineSqliteConfig({
+  databaseName: "nuxt",
+  getMigrations,
+});
+```
+
+After initialization, use `useDatabase<Database>()` to get the typed Kysely instance anywhere in the app.
 
 ## Using the Database
 
@@ -164,11 +186,11 @@ export async function down(db: Kysely<any>): Promise<void> {
 }
 ```
 
-Migrations are auto-discovered via `import.meta.glob` and run by Kysely's `BrowserMigrator` on every app startup. The migrator is idempotent — it skips already-applied migrations.
+Migrations are auto-discovered via `import.meta.glob` in `app/database/index.ts` and run by `runMigrations()` from `mp-nuxt-sqlite-layer` on every app startup. The migrator is idempotent — it skips already-applied migrations.
 
 ::: tip Adding a migration
 
 1. Create `app/database/migrations/YYYYMMDD[N]_your_change.migration.ts`
 2. Export `up` (and optionally `down`)
-3. No registration needed — auto-discovered at build time
+3. No registration needed — auto-discovered at build time via `import.meta.glob`
    :::

@@ -14,6 +14,7 @@ The Medipal mobile application is built with Nuxt 4 and Capacitor 7, targeting b
 | [mp-mobile-app-ios-native](https://github.com/medipal/mp-mobile-app-ios-native)         | Native iOS project                         |
 | [mp-mobile-app-android-native](https://github.com/medipal/mp-mobile-app-android-native) | Native Android project                     |
 | [mp-nuxt-api-layer](https://github.com/medipal/mp-nuxt-api-layer)                       | Shared Nuxt API layer                      |
+| [mp-nuxt-sqlite-layer](https://github.com/medipal/mp-nuxt-sqlite-layer)                 | Shared Nuxt SQLite + Kysely layer          |
 | [mp-nuxt-msal-plugin](https://github.com/medipal/mp-nuxt-msal-plugin)                   | Azure AD MSAL authentication plugin        |
 
 ## Key Features

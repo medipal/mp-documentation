@@ -325,6 +325,10 @@ export default defineConfig({
               text: "Shared Layers",
               link: "/mobile/shared-layers",
             },
+            {
+              text: "SQLite Layer",
+              link: "/mobile/mp-nuxt-sqlite-layer",
+            },
             { text: "Testing", link: "/mobile/testing" },
           ],
         },

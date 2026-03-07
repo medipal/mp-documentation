@@ -60,6 +60,7 @@ mp-frontend-plugin-template         (TypeScript starter for frontend plugins)
 
 mp-mobile-app (Nuxt 4 + Capacitor 7)
     ├─ mp-nuxt-api-layer            (shared Nuxt API layer)
+    ├─ mp-nuxt-sqlite-layer         (shared SQLite + Kysely layer)
     ├─ mp-nuxt-msal-plugin          (Azure AD auth)
     ├─ mp-mobile-app-api            (generated API client)
     ├─ mp-mobile-app-tracker-api    (generated tracker client)
@@ -163,6 +164,18 @@ See [API Client](/frontend/api-client) for how mp-frontend consumes this package
 - Handles method name mapping and interceptor wiring
 - Consumed via `extends: ["github:medipal/mp-nuxt-api-layer"]` in `nuxt.config.ts`
 - The consuming app must provide `app/api.config.ts` with a `createApi()` factory and `methodMap` object
+
+---
+
+### mp-nuxt-sqlite-layer
+
+**Role:** Shared Nuxt layer providing schema-agnostic SQLite + Kysely database infrastructure.
+
+- Provides `initDatabase()`, `useDatabase()`, `useSqliteConnection()` composables and `runMigrations()` utility
+- Schema-agnostic — connection management, migration runner, and optional CRUD helpers only
+- Consumer defines database schema, migration files, and domain logic
+- Uses callback pattern for `getMigrations()` so `import.meta.glob` resolves in consumer scope
+- Consumed via `extends: ["github:medipal/mp-nuxt-sqlite-layer"]` in `nuxt.config.ts`
 
 ---
 
@@ -471,7 +484,7 @@ Centralized CI/CD orchestration for the entire platform:
 ## Key Architectural Rules
 
 1. **Never edit generated repos manually** — `mp-frontend-api`, `mp-mobile-app-api`, `mp-mobile-app-tracker-api`, `mp-server-pydantic-models`, `mp-server-sql-alchemy-models`, `mp-server-api`, `mp-server-config-schema` are all regenerated via CI from mp-schema
-2. **`mp-nuxt-api-layer` is a Nuxt layer**, not a standalone app — must be consumed via `extends`
+2. **`mp-nuxt-api-layer` and `mp-nuxt-sqlite-layer` are Nuxt layers**, not standalone apps — must be consumed via `extends`
 3. **Questionnaire engines are single-file HTML bundles** — designed for CDN + iframe embedding
 4. **`mp-mobile-app-builder` ≠ `mp-mobile-app`** — builder is for native distribution only; see [Mobile App Builder Architecture](/mobile/mobile-app-builder)
 5. **Auth has two paths:** credentials (mp-nuxt-api-layer interceptors) + Azure AD (mp-nuxt-msal-plugin)
