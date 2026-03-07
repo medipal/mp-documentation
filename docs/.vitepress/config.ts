@@ -185,7 +185,7 @@ export default defineConfig({
               text: "Questionnaire Submission",
               link: "/frontend/questionnaire-submission",
             },
-            { text: "AI Designer", link: "/frontend/ai-designer" },
+            { text: "Global AI", link: "/frontend/global-ai" },
             {
               text: "Authentication",
               link: "/frontend/authentication",

@@ -39,7 +39,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Users table now shows role badges column with role-based filter dropdown
 - `parentPath`/`parentTab` query params for back-navigation to correct sub-tab
 
+#### Global AI — Shared Tools Layer
+
+- `sharedTools.ts` — aggregation module: `SHARED_TOOL_DEFINITIONS`, `SHARED_TOOL_HANDLERS`, `SHARED_TOOL_HINTS`, merge helpers (`mergeWithSharedTools`, `mergeWithSharedHints`, `executeSharedTool`, `getSharedToolMeta`)
+- `navigateTo` tool — AI can navigate the user to a different page via `router.push()` with route-prefix allowlist
+- `askUser` promoted to shared layer (`global/tools/askUser.ts`) — single source of truth for all modules
+- `getCurrentPageInfo` now available in all context modules (was default-only)
+- Default module now supports `askUser` (`features.askUser: true`)
+
 ### Changed
+
+#### Global AI — Shared Tools Refactor
+
+- Context modules (default, designer, scheduling, engineEditor) merge shared tools via `mergeWithSharedTools()` / `mergeWithSharedHints()`
+- `executeToolCall` delegates to `executeSharedTool()` first, then module-specific handlers
+- Read-only guards check `SHARED_READONLY_SAFE_TOOLS` alongside module allowlists
+- `uiOnlyTools` in all modules includes `SHARED_UI_ONLY_TOOLS`
 
 - Access token terminology renamed to **API Key** across all 11 locales
 - `useProviderStore` extended: `userRolesMap`, `fetchUserRoles()`, `getUserRoleBadges()`, `changeUserRoles()`, `showChangeUserRoleModal()`, `showResetUserPasswordModal()`, `showForcePasswordChangeModal()`
@@ -66,6 +81,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added `eslint-disable` for `vue/prop-name-casing` on `GridIcon.vue` snake_case props (intentional — API data spread via `v-bind`)
 - Removed unused `eslint-disable` directives in `patient.ts` and `vue-shim.d.ts`
 - Result: **0 ESLint warnings** (down from 106)
+
+### Removed
+
+- Duplicated `askUser` tool files from `designer/tools/`, `scheduling/tools/`, `engineEditor/tools/`
 
 ---
 
